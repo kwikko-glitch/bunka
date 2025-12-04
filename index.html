@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<body>
+  <h2>川柳投票フォーム</h2>
+
+  <!-- 名前入力 -->
+  <label>お名前：</label>
+  <input id="name" type="text"><br><br>
+
+  <!-- 町内コンボボックス -->
+  <label>町内：</label>
+  <select id="town">
+    <option value="">選択してください</option>
+    <option value="1-瀬名新幕">1-瀬名新幕</option>
+    <option value="2-南幕ヶ谷">2-南幕ヶ谷</option>
+    <option value="3-瀬名大門">3-瀬名大門</option>
+    <option value="4-瀬名原">4-瀬名原</option>
+    <option value="5-瀬名大谷津">5-瀬名大谷津</option>
+    <option value="6-瀬名桜藪">6-瀬名桜藪</option>
+    <option value="7-瀬名東上">7-瀬名東上</option>
+    <option value="8-瀬名東下">8-瀬名東下</option>
+    <option value="9-水梨古瀬名">9-水梨古瀬名</option>
+    <option value="10-瀬名新田">10-瀬名新田</option>
+    <option value="11-瀬名西下">11-瀬名西下</option>
+    <option value="12-瀬名勘南久">12-瀬名勘南久</option>
+    <option value="13-瀬名緑町">13-瀬名緑町</option>
+    <option value="14-竜南団地">14-竜南団地</option>
+    <option value="15-西奈団地">15-西奈団地</option>
+    <option value="16-瀬名橘町">16-瀬名橘町</option>
+    <option value="17-瀬名原団地">17-瀬名原団地</option>
+    <option value="18-足ヶ谷">18-足ヶ谷</option>
+    <option value="19-その他">19-その他</option>
+  </select>
+
+  <br><br>
+
+  <!-- 投票番号 -->
+  <label>1つ目の番号：</label>
+  <input id="v1" type="number"><br><br>
+
+  <label>2つ目の番号：</label>
+  <input id="v2" type="number"><br><br>
+
+  <label>3つ目の番号：</label>
+  <input id="v3" type="number"><br><br>
+
+  <button onclick="sendVote()">送信</button>
+
+  <p id="msg"></p>
+
+<script>
+const endpoint = "★ここに Apps Script の Web アプリURL を入れる★";
+
+function sendVote() {
+  const data = {
+    name: document.getElementById("name").value,
+    town: document.getElementById("town").value,
+    v1: document.getElementById("v1").value,
+    v2: document.getElementById("v2").value,
+    v3: document.getElementById("v3").value
+  };
+
+  fetch(endpoint, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  document.getElementById("msg").innerText = "送信したで！ ありがとう〜";
+}
+</script>
+</body>
+</html>
